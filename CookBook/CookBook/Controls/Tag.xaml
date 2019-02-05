@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CookBook.Controls.Tag"
+    CornerRadius = "10"
+    BackgroundColor = "Red"
+    Padding = "3,3,3,3"
+    MinimumWidthRequest = "50">
+    <Frame.Content>
+        
+        <Label  x:Name="lbl"
+                TextColor = "White"
+                FontAttributes ="Bold"                
+                MinimumWidthRequest = "50" />
+    </Frame.Content>
+</Frame>

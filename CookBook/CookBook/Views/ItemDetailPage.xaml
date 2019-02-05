@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             x:Class="CookBook.Views.ItemDetailPage" Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditCommand}" />
+        <ToolbarItem Text="Photo" Command="{Binding TakePhotoCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <RelativeLayout Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <StackLayout Spacing="0" Padding="0" RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}">
+                <cv:CarouselView  ItemsSource="{Binding ThesePictures}" x:Name="Carousel" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="200" >
+                    <cv:CarouselView.ItemTemplate>
+                      <DataTemplate>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                                <Image Source="{Binding Value}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />    
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.ShowCommand}" CommandParameter="{Binding Key}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                      </DataTemplate>
+                    </cv:CarouselView.ItemTemplate>
+                  </cv:CarouselView>
+                    <ScrollView>
+                        <StackLayout Padding="10,10,10,10" Spacing="0">
+                        
+                           
+                            <StackLayout x:Name="tagContainer" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                            <BoxView HeightRequest="10" BackgroundColor="Transparent" />
+                            
+                            <Label Text="Ingredients:" Style="{StaticResource Header}" />
+                            <Label Text="{Binding Item.Ingredients}" Style="{StaticResource Content}" />
+                            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource SlateLight1}" />
+                            <BoxView HeightRequest="10" BackgroundColor="Transparent" />
+                            
+                            <Label Text="Instructions:" Style="{StaticResource Header}" />
+                            <Label Text="{Binding Item.Text}" Style="{StaticResource Content}" />
+                            <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource SlateLight1}" />
+                            <BoxView HeightRequest="10" BackgroundColor="Transparent" />
+                            
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+           
+            
+            <StackLayout BackgroundColor="Black" IsVisible="{Binding ShowPhoto}" HorizontalOptions="FillAndExpand" VerticalOptions=" FillAndExpand" RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            
+                <Image Source="{Binding MaxImage}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                    
+                    <Button VerticalOptions="End" Command="{Binding CloseCommand}" Text="Close" HorizontalOptions="StartAndExpand" />
+                    <Button VerticalOptions="End" Command="{Binding DeletePhotoCommand}" Text="Delete" HorizontalOptions="EndAndExpand" />
+                    
+                </StackLayout>
+            </StackLayout>
+            
+        </RelativeLayout>
+    </ScrollView>
+</ContentPage>

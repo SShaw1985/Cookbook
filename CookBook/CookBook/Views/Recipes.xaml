@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CookBook.Views.Recipes" Title="Recipes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter" Command="{Binding FilterCommand}"/>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            
+        
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" Padding="10,10,10,10" IsVisible="{Binding IsResultsVisible}">
+
+            <ListView x:Name="RecipesList" ItemTapped="Handle_ItemTapped" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding AllRecipes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Spacing="0" Padding="10,10,10,10" IsVisible="{Binding IsFilterVisible}">
+                <Entry Placeholder="Name..." Text="{Binding SearchTerm}" />
+            <ListView x:Name="filterList" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding Filters}" ItemTapped="Handle_ItemTapped_1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Selected}" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding Tag}" Grid.Row="0" Grid.Column="1"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <Button Text="Apply" Command="{Binding FilterCommand}" />
+        </StackLayout>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

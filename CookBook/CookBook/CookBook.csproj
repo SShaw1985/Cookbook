@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Microsoft.ProjectOxford.Vision" Version="1.0.393" />
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="SQLite.Net.Async-PCL" Version="3.1.1" />
+    <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+    <PackageReference Include="SQLiteNetExtensions.Async" Version="2.1.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="3.2.0" />
+    <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
+    <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\AboutPage.xaml %28copy%29.cs" />
+    <Compile Remove="Views\AboutPage.xaml %28copy%29.cs" />
+    <Compile Remove="Database\Tables\AccountRelationship.cs" />
+    <Compile Remove="Database\Tables\AppGlobal.cs" />
+    <Compile Remove="Database\Tables\AppSettings.cs" />
+    <Compile Remove="Database\Tables\User.cs" />
+    <Compile Remove="Database\Platform.cs" />
+    <Compile Remove="ViewModels\ItemsViewModel.cs" />
+    <Compile Remove="Controls\Tag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\AboutPage %28copy%29.xaml" />
+    <EmbeddedResource Remove="Views\AboutPage %28copy%29.xaml" />
+    <EmbeddedResource Remove="Views\AboutPage %28copy%29.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+</Project>

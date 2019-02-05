@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CookBook.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <Color x:Key="SteelBlue">#19557F</Color>
+            <Color x:Key="SteelBlueLight1">#ADC5D5</Color>
+            <Color x:Key="SteelBlueLight2">#C3D5E1</Color>
+            <Color x:Key="SteelBlueLight3">#D8E5EE</Color>
+            <Color x:Key="SteelBlueLight4">#EDF5FA</Color>
+            <Color x:Key="SteelBlueDark1">#154B6F</Color>
+            <Color x:Key="SteelBlueDark2">#104566</Color>
+            <Color x:Key="SteelBlueDark3">#0B3D59</Color>
+            <Color x:Key="SteelBlueDark4">#06354C</Color>
+            
+            <Color x:Key="Slate">#5B7183</Color>
+            <Color x:Key="SlateLight1">#ABBCCA</Color>
+            <Color x:Key="SlateLight2">#C3CFDA</Color>
+            <Color x:Key="SlateLight3">#DBE3EA</Color>
+            <Color x:Key="SlateLight4">#F2F6FA</Color>
+            <Color x:Key="SlateDark1">#496073</Color>
+            <Color x:Key="SlateDark2">#3F5467</Color>
+            <Color x:Key="SlateDark3">#34495B</Color>
+            <Color x:Key="SlateDark4">#293D4F</Color>
+            
+            <Color x:Key="Mint">#1A8573</Color>
+            <Color x:Key="MintLight1">#5DAC9D</Color>
+            <Color x:Key="MintLight2">#8CC5BA</Color>
+            <Color x:Key="MintLight3">#BADFD6</Color>
+            <Color x:Key="MintLight4">#E9F8F3</Color>
+            <Color x:Key="MintDark1">#1A7365</Color>
+            <Color x:Key="MintDark2">#136259</Color>
+            <Color x:Key="MintDark3">#0B504B</Color>
+            <Color x:Key="MintDark4">#003F3F</Color>
+            
+            <Color x:Key="Leaf">#78B25D</Color>
+            <Color x:Key="LeafLight1">#8BC471</Color>
+            <Color x:Key="LeafLight2">#A9D496</Color>
+            <Color x:Key="LeafLight3">#C8E6BB</Color>
+            <Color x:Key="LeafLight4">#E6F7E0</Color>
+            <Color x:Key="LeafDark1">#487F3F</Color>
+            <Color x:Key="LeafDark2">#3D7035</Color>
+            <Color x:Key="LeafDark3">#325D2C</Color>
+            <Color x:Key="LeafDark4">#274A22</Color>
+            
+            <Color x:Key="Ocean">#3BAECC</Color>
+            <Color x:Key="OceanLight1">#48BAD9</Color>
+            <Color x:Key="OceanLight2">#7ECFE6</Color>
+            <Color x:Key="OceanLight3">#B5E4F2</Color>
+            <Color x:Key="OceanLight4">#ECF9FF</Color>
+            <Color x:Key="OceanDark1">#1A809C</Color>
+            <Color x:Key="OceanDark2">#0F718C</Color>
+            <Color x:Key="OceanDark3">#01637D</Color>
+            <Color x:Key="OceanDark4">#025B73</Color>
+
+            
+            <Color x:Key="Asparagus">#A4CC44</Color>
+            <Color x:Key="AsparagusLight1">#B5DC56</Color>
+            <Color x:Key="AsparagusLight2">#C8E87B</Color>
+            <Color x:Key="AsparagusLight3">#DBF3A1</Color>
+            <Color x:Key="AsparagusLight4">#EEFFC6</Color>
+            <Color x:Key="AsparagusDark1">#9DC63B</Color>
+            <Color x:Key="AsparagusDark2">#94BD32</Color>
+            <Color x:Key="AsparagusDark3">#8CB42A</Color>
+            <Color x:Key="AsparagusDark4">#83AB21</Color>
+            
+            <Color x:Key="Tangerine">#F1C44F</Color>
+            <Color x:Key="TangerineLight1">#FAD164</Color>
+            <Color x:Key="TangerineLight2">#FCDE8E</Color>
+            <Color x:Key="TangerineLight3">#FDEAB7</Color>
+            <Color x:Key="TangerineLight4">#FFF7E1</Color>
+            <Color x:Key="TangerineDark1">#E1B133</Color>
+            <Color x:Key="TangerineDark2">#D8A82A</Color>
+            <Color x:Key="TangerineDark3">#D0A022</Color>
+            <Color x:Key="TangerineDark4">#C79719</Color>
+            
+            <Color x:Key="Pumpkin">#F38130</Color>
+            <Color x:Key="PumpkinLight1">#FF964B</Color>
+            <Color x:Key="PumpkinLight2">#FFB47D</Color>
+            <Color x:Key="PumpkinLight3">#FFD1AF</Color>
+            <Color x:Key="PumpkinLight4">#FFEFE1</Color>
+            <Color x:Key="PumpkinDark1">#C05205</Color>
+            <Color x:Key="PumpkinDark2">#B04A03</Color>
+            <Color x:Key="PumpkinDark3">#A04102</Color>
+            <Color x:Key="PumpkinDark4">#903900</Color>
+            
+            <Color x:Key="DarkRed">#7F2725</Color>
+            <Color x:Key="DarkRedLight1">#8D3432</Color>
+            <Color x:Key="DarkRedLight2">#953937</Color>
+            <Color x:Key="DarkRedLight3">#9E3F3C</Color>
+            <Color x:Key="DarkRedLight4">#A64441</Color>
+            <Color x:Key="DarkRedDark1">#751F1D</Color>
+            <Color x:Key="DarkRedDark2">#671D1B</Color>
+            <Color x:Key="DarkRedDark3">#591917</Color>
+            <Color x:Key="DarkRedDark4">#4B1413</Color>
+            
+            <Color x:Key="Sand">#E0DDCE</Color>
+            <Color x:Key="SandLight1">#E4E1D5</Color>
+            <Color x:Key="SandLight2">#ECE9E0</Color>
+            <Color x:Key="SandLight3">#F3F2EC</Color>
+            <Color x:Key="SandLight4">#FBFAF7</Color>
+            <Color x:Key="SandDark1">#D6D1BC</Color>
+            <Color x:Key="SandDark2">#C6C1A7</Color>
+            <Color x:Key="SandDark3">#B7B092</Color>
+            <Color x:Key="SandDark4">#A7A07D</Color>
+            
+            <Color x:Key="Moss">#537650</Color>
+            <Color x:Key="MossLight1">#9DB999</Color>
+            <Color x:Key="MossLight2">#BACEB7</Color>
+            <Color x:Key="MossLight3">#D6E3D5</Color>
+            <Color x:Key="MossLight4">#F3F8F3</Color>
+            <Color x:Key="MossDark1">#4A6D46</Color>
+            <Color x:Key="MossDark2">#3F5F3A</Color>
+            <Color x:Key="MossDark3">#355230</Color>
+            <Color x:Key="MossDark4">#2A4525</Color>
+            
+            <Color x:Key="Grape">#5F3A6C</Color>
+            <Color x:Key="GrapeLight1">#C6B1CD</Color>
+            <Color x:Key="GrapeLight2">#D8C8DD</Color>
+            <Color x:Key="GrapeLight3">#E9DFEC</Color>
+            <Color x:Key="GrapeLight4">#FBF6FC</Color>
+            <Color x:Key="GrapeDark1">#552E62</Color>
+            <Color x:Key="GrapeDark2">#492755</Color>
+            <Color x:Key="GrapeDark3">#3E1E49</Color>
+            <Color x:Key="GrapeDark4">#33163D</Color>
+            
+            <Color x:Key="DarkGrey">#2E2E2E</Color>
+            <Color x:Key="DarkGreyLight1">#404040</Color>
+            <Color x:Key="DarkGreyLight2">#525252</Color>
+            <Color x:Key="DarkGreyLight3">#636363</Color>
+            <Color x:Key="DarkGreyLight4">#757575</Color>
+            <Color x:Key="DarkGreyDark1">#292929</Color>
+            <Color x:Key="DarkGreyDark2">#242424</Color>
+            <Color x:Key="DarkGreyDark3">#181818</Color>
+            <Color x:Key="DarkGreyDark4">#000000</Color>
+            
+            <Color x:Key="LightGrey">#BFBFBF</Color>
+            <Color x:Key="LightGreyLight1">#CDCDCD</Color>
+            <Color x:Key="LightGreyLight2">#DBDBDB</Color>
+            <Color x:Key="LightGreyLight3">#E9E9E9</Color>
+            <Color x:Key="LightGreyLight4">#F7F7F7</Color>
+            <Color x:Key="LightGreyDark1">#B4B4B4</Color>
+            <Color x:Key="LightGreyDark2">#AAAAAA</Color>
+            <Color x:Key="LightGreyDark3">#A09F9F</Color>
+            <Color x:Key="LightGreyDark4">#969595</Color>
+
+            <Color x:Key="ErrorColor">#FF7F2725</Color>
+            <Color x:Key="NavBarTextColor">#195480</Color>
+            <Color x:Key="Transparent">#00000000</Color>
+                    
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            
+            <Style x:Key="Header" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource SlateDark1}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style x:Key="Content" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Slate}" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

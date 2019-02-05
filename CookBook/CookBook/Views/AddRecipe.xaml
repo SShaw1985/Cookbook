@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CookBook.Views.AddRecipe">
+    <ContentPage.Content>
+        
+         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="20" Padding="15">
+                <Image Source="close.png" HorizontalOptions="End" VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <Label Text="Title:" FontSize="Medium" />
+                <Entry Text="{Binding RecipeTitle}" />
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    
+                    <Label Text="Ingredients:" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                    <Image Source="photo.png" HorizontalOptions="EndAndExpand" WidthRequest="40" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding IngredientsCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <Editor Text="{Binding Ingredients}" FontSize="Small" HeightRequest="300" BackgroundColor="#D4D4D4" />
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    
+                    <Label Text="Instructions:" FontSize="Medium" VerticalOptions="CenterAndExpand"/>
+                    <Image Source="photo.png" HorizontalOptions="EndAndExpand" WidthRequest="40" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InstructionsCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                 <Editor Text="{Binding Instructions}" FontSize="Small" HeightRequest="300" BackgroundColor="#D4D4D4" />
+               
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    
+                    <Label Text="Tags:" FontSize="Medium" VerticalOptions="FillAndExpand"/>
+                    
+                </StackLayout>
+               
+                <Entry Text="{Binding Tags}" FontSize="Small" Placeholder="Comma seperated"  />
+                
+                <Button Command="{Binding SaveCommand}" Text="Save"/>
+            </StackLayout>
+        </ScrollView>
+            
+    </ContentPage.Content>
+</ContentPage>
