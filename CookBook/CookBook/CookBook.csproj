@@ -23,6 +23,11 @@
     <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="5.2.0" />
+    <PackageReference Include="Xamarin.Tesseract" Version="0.3.4" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.2.20" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.2.20" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.20" />
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.4.0.54" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\AboutPage.xaml %28copy%29.cs" />

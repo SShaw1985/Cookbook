@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+              xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             x:Class="CookBook.Views.BusinessScanner">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Command="{Binding ScanPhotoCommand}" Text="Scan" />
+        <ToolbarItem  Command="{Binding PickPhotoCommand}" Text="Gallery" />
+        <ToolbarItem  Command="{Binding TakePhotoCommand}" Text="Photo" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="0" Padding="15">
+                <imageeditor:SfImageEditor x:Name="editor" Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
+                 <Label Text="Scan Type:" FontSize="Medium" />
+                    <Picker ItemsSource="{Binding ScanTypes}" SelectedItem="{Binding ScanType}" ItemDisplayBinding="{Binding .}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                <StackLayout IsVisible="{Binding ShowResults}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Business Name:" FontSize="Medium" />
+                    <Entry Text="{Binding BusinessName}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Title:" FontSize="Medium" />
+                    <Picker ItemsSource="{Binding Others}" SelectedItem="{Binding Title}" ItemDisplayBinding="{Binding .}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Email:" FontSize="Medium" />
+                    <Entry Text="{Binding Email}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Phone Number:" FontSize="Medium" />
+                    <Entry Text="{Binding PhoneNumber}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Url:" FontSize="Medium" />
+                    <Entry Text="{Binding Url}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="Street Address:" FontSize="Medium" />
+                    <Entry Text="{Binding StreetAddress}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="City:" FontSize="Medium" />
+                    <Entry Text="{Binding City}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    <Label Text="State:" FontSize="Medium" />
+                    <Entry Text="{Binding State}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    
+                    <Label Text="Zip:" FontSize="Medium" />
+                    <Entry Text="{Binding Zip}" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                    
+                    
+                    <Label Text="Raw Scanned Data:" FontSize="Medium" />
+                    <Editor Text="{Binding Raw}" FontSize="Small" HeightRequest="300" />
+                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                </StackLayout>
+                <Button Command="{Binding ScanPhotoCommand}" HorizontalOptions="FillAndExpand" Style="{StaticResource LoginButton}" Text="Scan"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

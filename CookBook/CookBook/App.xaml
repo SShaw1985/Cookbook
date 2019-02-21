@@ -165,6 +165,18 @@
                 <Setter Property="TextColor" Value="{StaticResource Slate}" />
                 <Setter Property="FontSize" Value="Small" />
             </Style>
+            
+             <Style x:Key="LoginButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Tangerine}" />
+                <Setter Property="BorderRadius" Value="6" />
+                <Setter Property="TextColor" Value="{StaticResource SteelBlueDark4}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HeightRequest" Value="44"/>
+                <Setter Property="WidthRequest" Value="165"/>
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="StartAndExpand" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -8,10 +8,13 @@ using Android.OS;
 using Plugin.CurrentActivity;
 using Acr.UserDialogs;
 using System.IO;
+using Android.Content;
+using Android.Media.Audiofx;
+using FFImageLoading.Forms.Droid;
 
 namespace CookBook.Droid
 {
-    [Activity(Label = "CookBook", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Business Scanner", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -20,13 +23,14 @@ namespace CookBook.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(savedInstanceState); 
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             InitializeDatabase();
             UserDialogs.Init(this);
-            App.Init(new DroidSetup());
+            App.Init(new DroidSetup(ApplicationContext));
             LoadApplication(new App());
-            
+
         }
         public void InitializeDatabase()
         {
@@ -54,6 +58,9 @@ namespace CookBook.Droid
             }
 
         }
+
+      
+     
 
     }
 }

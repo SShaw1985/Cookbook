@@ -23,6 +23,7 @@ namespace CookBook.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Syncfusion.SfImageEditor.XForms.iOS.SfImageEditorRenderer.Init();
             App.Init(new IOSSetup());
             LoadApplication(new App());
 

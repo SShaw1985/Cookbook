@@ -46,11 +46,11 @@ namespace CookBook
             Recipes = new Recipes();
             TakePhoto = new TakePhoto();
             EditRecipe = new EditRecipe();
-
+            BusinessScanner = new BusinessScanner();
             NaviService = _container.Resolve<INavigationService>() as NavigationService;
 
             var pageFactory = _container.Resolve<IPageFactory>();
-            var home = pageFactory.GetPage(Pages.MainPage) as TabbedPage;
+            var home = BusinessScanner;// pageFactory.GetPage(Pages.MainPage) as TabbedPage;
             StartupPage = home;
             MainPage = StartupPage;
         }
@@ -68,6 +68,7 @@ namespace CookBook
             RecipesViewModel = _container.Resolve<RecipesViewModel>();
             AddRecipeViewModel = _container.Resolve<AddRecipeViewModel>();
             EditRecipeViewModel = _container.Resolve<EditRecipeViewModel>();
+            BusinessScannerViewModel = _container.Resolve<BusinessScannerViewModel>();
         }
 
 
@@ -95,6 +96,7 @@ namespace CookBook
         public static RecipesViewModel RecipesViewModel { get; set; }
         public static AddRecipeViewModel AddRecipeViewModel { get; set; }
         public static EditRecipeViewModel EditRecipeViewModel { get; set; }
+        public static BusinessScannerViewModel BusinessScannerViewModel { get; set; }
 
         public static AboutPage AboutPage { get; set; }
         public static AddRecipe AddRecipe { get; set; }
@@ -103,5 +105,6 @@ namespace CookBook
         public static Recipes Recipes { get; set; }
         public static TakePhoto TakePhoto { get; set; }
         public static EditRecipe EditRecipe { get; set; }
+        public static BusinessScanner BusinessScanner { get; set; }
     }
 }

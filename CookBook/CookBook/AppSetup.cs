@@ -2,7 +2,7 @@
 using CookBook.Database;
 using CookBook.Interfaces;
 using CookBook.Services;
-using CookBook.ViewModels; 
+using CookBook.ViewModels;
 
 namespace CookBook
 {
@@ -44,6 +44,9 @@ namespace CookBook
             cb.RegisterType<ItemDetailViewModel>().SingleInstance();
             cb.RegisterType<AddRecipeViewModel>().SingleInstance();
             cb.RegisterType<EditRecipeViewModel>().SingleInstance();
+            cb.RegisterType<BusinessScannerViewModel>().SingleInstance();
+
+
         }
 	}
 }

@@ -2,6 +2,8 @@ using AgentAssist.Mobile.Ios.Services.SQL;
 using Autofac;
 using CookBook;
 using CookBook.Database;
+using Tesseract;
+using Tesseract.iOS;
 
 namespace CookBook.iOS
 {
@@ -12,6 +14,8 @@ namespace CookBook.iOS
             base.RegisterDepenencies(cb);
 
             cb.RegisterType<SQLiteHelper>().As<ISQLiteHelper>().SingleInstance();
+            cb.RegisterType<TesseractApi>().As<ITesseractApi>().SingleInstance();
+          
         }
     }
 }
