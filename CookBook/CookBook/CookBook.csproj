@@ -28,6 +28,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.2.20" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.2.20" />
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="16.4.0.54" />
+    <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\AboutPage.xaml %28copy%29.cs" />
@@ -48,5 +49,10 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

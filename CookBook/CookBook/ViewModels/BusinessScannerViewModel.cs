@@ -12,6 +12,7 @@ using FFImageLoading.Forms;
 using FFImageLoading.Transformations;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using SkiaSharp;
 using Syncfusion.SfImageEditor.XForms;
 using Tesseract;
 using Xamarin.Forms;
@@ -23,6 +24,7 @@ namespace CookBook.ViewModels
     {
         private IAppNavigation Navi { get; set; }
         private readonly ITesseractApi _tesseractApi;
+        private readonly ISKService SKService;
 
         private string TelephoneRegex = @"\(?\d{3}\)?[-\.]? *\d{3}[-\.]? *[-\.]?\d{4}";
         private string EmailRegex = @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
@@ -61,10 +63,11 @@ namespace CookBook.ViewModels
 
         public string Path { get; set; }
 
-        public BusinessScannerViewModel(IAppNavigation _navi, ITesseractApi tesseractApi)
+        public BusinessScannerViewModel(IAppNavigation _navi, ITesseractApi tesseractApi, ISKService _skservice)
         {
             Navi = _navi;
             _tesseractApi = tesseractApi;
+            SKService = _skservice;
             ScanTypes = new List<int>();
             for (int iii = 1; iii <= 13;iii++)
             {
@@ -88,6 +91,7 @@ namespace CookBook.ViewModels
         private async void TakePhoto(object obj)
         {
             ShowResults = false;
+            SavedStream = null;
             UserDialogs.Instance.ShowLoading("Scanning");
 
             strm = null;
@@ -121,26 +125,38 @@ namespace CookBook.ViewModels
 
         private async void PickPhoto(object obj)
         {
-            ShowResults = false;
-            UserDialogs.Instance.ShowLoading("Scanning");
+            try
+            {
 
-            strm = null;
+                ShowResults = false;
+                SavedStream = null;
+                UserDialogs.Instance.ShowLoading("Scanning");
 
-            UserDialogs.Instance.HideLoading();
+                strm = null;
 
-
-            MediaFile photo;
-           
-            photo = await CrossMedia.Current.PickPhotoAsync();
-
-
-            strm = photo.GetStream();
-            Path = photo.Path;
-            Image = ImageSource.FromFile(Path);
+                UserDialogs.Instance.HideLoading();
 
 
+                MediaFile photo;
 
-            OnPropertyChanged("ShowResults");
+                photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions(){
+                    PhotoSize = PhotoSize.Large
+                });
+                Stream streamFromPhoto = photo.GetStream();
+
+
+                Stream bit = SKService.Resize(streamFromPhoto, 400, 300);
+              
+                Path = photo.Path;
+                Image = ImageSource.FromStream(() => { return bit; });
+
+                OnPropertyChanged("ShowResults");
+            }
+            catch(Exception ex)
+            {
+                string ss = ex.Message;
+
+            }
         }
 
         public bool ShowResults { get; set; }
@@ -172,7 +188,7 @@ namespace CookBook.ViewModels
             OnPropertyChanged("City");
             OnPropertyChanged("Title");
             OnPropertyChanged("Others");
-
+            
             UserDialogs.Instance.ShowLoading("Scanning");
             if (!_tesseractApi.Initialized)
             {
@@ -237,8 +253,15 @@ namespace CookBook.ViewModels
 
             _tesseractApi.SetPageSegmentationMode(type);
 
-            var stream = File.OpenRead(Path);
-
+            Stream stream = null;
+            if (SavedStream != null)
+            {
+                stream = SavedStream;
+            }
+            else
+            {
+               stream= File.OpenRead(Path);
+            }
             if (stream != null)
             {
                 var source = stream;
@@ -399,6 +422,7 @@ namespace CookBook.ViewModels
             }
             return ret;
         }
+
         public string ScanWebsite(string text)
         {
             string ret = string.Empty;
@@ -490,6 +514,122 @@ namespace CookBook.ViewModels
         }
 
         public Stream SavedStream { get; set; }
+
+        //Resize
+        public SKBitmap Resize(SKBitmap bmp, int newWidth, int newHeight)
+        {
+
+            SKBitmap temp = (SKBitmap)bmp;
+
+            SKBitmap bmap = new SKBitmap(newWidth, newHeight);
+
+            double nWidthFactor = (double)temp.Width / (double)newWidth;
+            double nHeightFactor = (double)temp.Height / (double)newHeight;
+
+            double fx, fy, nx, ny;
+            int cx, cy, fr_x, fr_y;
+            SKColor color1 = new SKColor();
+            SKColor color2 = new SKColor();
+            SKColor color3 = new SKColor();
+            SKColor color4 = new SKColor();
+            byte nRed, nGreen, nBlue;
+
+            byte bp1, bp2;
+
+            for (int x = 0; x < bmap.Width; ++x)
+            {
+                for (int y = 0; y < bmap.Height; ++y)
+                {
+
+                    fr_x = (int)Math.Floor(x * nWidthFactor);
+                    fr_y = (int)Math.Floor(y * nHeightFactor);
+                    cx = fr_x + 1;
+                    if (cx >= temp.Width) cx = fr_x;
+                    cy = fr_y + 1;
+                    if (cy >= temp.Height) cy = fr_y;
+                    fx = x * nWidthFactor - fr_x;
+                    fy = y * nHeightFactor - fr_y;
+                    nx = 1.0 - fx;
+                    ny = 1.0 - fy;
+
+                    color1 = temp.GetPixel(fr_x, fr_y);
+                    color2 = temp.GetPixel(cx, fr_y);
+                    color3 = temp.GetPixel(fr_x, cy);
+                    color4 = temp.GetPixel(cx, cy);
+
+                    // Blue
+                    bp1 = (byte)(nx * color1.Blue + fx * color2.Blue);
+
+                    bp2 = (byte)(nx * color3.Blue + fx * color4.Blue);
+
+                    nBlue = (byte)(ny * (double)(bp1) + fy * (double)(bp2));
+
+                    // Green
+                    bp1 = (byte)(nx * color1.Green + fx * color2.Green);
+
+                    bp2 = (byte)(nx * color3.Green + fx * color4.Green);
+
+                    nGreen = (byte)(ny * (double)(bp1) + fy * (double)(bp2));
+
+                    // Red
+                    bp1 = (byte)(nx * color1.Red + fx * color2.Red);
+
+                    bp2 = (byte)(nx * color3.Red + fx * color4.Red);
+
+                    nRed = (byte)(ny * (double)(bp1) + fy * (double)(bp2));
+
+                    bmap.SetPixel(x, y,SKColor.Parse(Helper.GetHexString(Color.FromRgb(nRed, nGreen, nBlue))));
+                }
+            }
+
+
+
+            bmap = SetGrayscale(bmap);
+            bmap = RemoveNoise(bmap);
+
+            return bmap;
+
+        }
+
+     
+        //SetGrayscale
+        public SKBitmap SetGrayscale(SKBitmap img)
+        {
+            SKBitmap temp = (SKBitmap)img;
+            SKBitmap bmap = (SKBitmap)temp.Copy();
+            SKColor c;
+            for (int i = 0; i < bmap.Width; i++)
+            {
+                for (int j = 0; j < bmap.Height; j++)
+                {
+                    c = bmap.GetPixel(i, j);
+                    byte gray = (byte)(.299 * c.Red + .587 * c.Green + .114 * c.Blue);
+                    var colo = Color.FromRgb(gray, gray, gray);
+                    bmap.SetPixel(i, j, SKColor.Parse(Helper.GetHexString(colo)));
+                }
+            }
+            return (SKBitmap)bmap.Copy();
+
+        }
+
+        //RemoveNoise
+        public SKBitmap RemoveNoise(SKBitmap bmap)
+        {
+
+            for (var x = 0; x < bmap.Width; x++)
+            {
+                for (var y = 0; y < bmap.Height; y++)
+                {
+                    var pixel = bmap.GetPixel(x, y);
+                    if (pixel.Red < 162 && pixel.Green < 162 && pixel.Blue < 162)
+                        bmap.SetPixel(x, y, SKColor.Parse("#111111"));
+                    else if (pixel.Red > 162 && pixel.Green > 162 && pixel.Blue > 162)
+                        bmap.SetPixel(x, y, SKColor.Parse("#ffffff")  );
+                }
+            }
+
+            return bmap;
+        }
     }
 
 
@@ -612,5 +752,33 @@ namespace CookBook.ViewModels
             }
         }
 
+    }
+
+    public static class Helper
+    {
+        public static string GetHexString(this Xamarin.Forms.Color color)
+        {
+            var red = (int)(color.R * 255);
+            var green = (int)(color.G * 255);
+            var blue = (int)(color.B * 255);
+            var alpha = (int)(color.A * 255);
+            var hex = $"#{alpha:X2}{red:X2}{green:X2}{blue:X2}";
+
+            return hex;
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
     }
 }

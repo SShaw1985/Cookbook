@@ -105,6 +105,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL\SQLiteHelper.cs" />
     <Compile Include="DroidSetup.cs" />
+    <Compile Include="Sharpen.cs" />
+    <Compile Include="SKService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
