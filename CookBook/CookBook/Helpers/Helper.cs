@@ -11,7 +11,7 @@ namespace CookBook.Helpers
     {
         // For printed text, change to TextRecognitionMode.Printed
         private const TextRecognitionMode textRecognitionMode =
-            TextRecognitionMode.Handwritten;
+            TextRecognitionMode.Printed;
 
         const int numberOfCharsInOperationId = 36;
 
@@ -31,8 +31,8 @@ namespace CookBook.Helpers
 
         public static async Task<string> ScanImage(string path)
         {
-            string apiKey = "efd1871133d44c9da588f54dd14b4377";
-            string apiRoot = "https://westus.api.cognitive.microsoft.com";
+            string apiKey = "d1a029b6e42240f5b26f2e10798b3f92";
+            string apiRoot = "https://australiaeast.api.cognitive.microsoft.com/";
 
             ComputerVisionClient computerVision = new ComputerVisionClient(
                 new ApiKeyServiceClientCredentials(apiKey),

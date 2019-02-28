@@ -46,11 +46,15 @@ namespace CookBook
             Recipes = new Recipes();
             TakePhoto = new TakePhoto();
             EditRecipe = new EditRecipe();
+
+            MainBusinessCardPage = new MainBusinessCardPage();
             BusinessScanner = new BusinessScanner();
+            AzureBusinessScanner = new AzureBusinessScanner();
+
             NaviService = _container.Resolve<INavigationService>() as NavigationService;
 
             var pageFactory = _container.Resolve<IPageFactory>();
-            var home = BusinessScanner;// pageFactory.GetPage(Pages.MainPage) as TabbedPage;
+            var home = MainBusinessCardPage;// pageFactory.GetPage(Pages.MainPage) as TabbedPage;
             StartupPage = home;
             MainPage = StartupPage;
         }
@@ -68,7 +72,10 @@ namespace CookBook
             RecipesViewModel = _container.Resolve<RecipesViewModel>();
             AddRecipeViewModel = _container.Resolve<AddRecipeViewModel>();
             EditRecipeViewModel = _container.Resolve<EditRecipeViewModel>();
+
+            MainBusinessCardPageViewModel = _container.Resolve<MainBusinessCardPageViewModel>();
             BusinessScannerViewModel = _container.Resolve<BusinessScannerViewModel>();
+            AzureBusinessScannerViewModel = _container.Resolve<AzureBusinessScannerViewModel>();
         }
 
 
@@ -96,7 +103,10 @@ namespace CookBook
         public static RecipesViewModel RecipesViewModel { get; set; }
         public static AddRecipeViewModel AddRecipeViewModel { get; set; }
         public static EditRecipeViewModel EditRecipeViewModel { get; set; }
+
+        public static MainBusinessCardPageViewModel MainBusinessCardPageViewModel { get; set; }
         public static BusinessScannerViewModel BusinessScannerViewModel { get; set; }
+        public static AzureBusinessScannerViewModel AzureBusinessScannerViewModel { get; set; }
 
         public static AboutPage AboutPage { get; set; }
         public static AddRecipe AddRecipe { get; set; }
@@ -105,6 +115,9 @@ namespace CookBook
         public static Recipes Recipes { get; set; }
         public static TakePhoto TakePhoto { get; set; }
         public static EditRecipe EditRecipe { get; set; }
+
+        public static MainBusinessCardPage MainBusinessCardPage { get; set; }
         public static BusinessScanner BusinessScanner { get; set; }
+        public static AzureBusinessScanner AzureBusinessScanner { get; set; }
     }
 }

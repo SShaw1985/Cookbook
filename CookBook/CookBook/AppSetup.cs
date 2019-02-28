@@ -44,7 +44,10 @@ namespace CookBook
             cb.RegisterType<ItemDetailViewModel>().SingleInstance();
             cb.RegisterType<AddRecipeViewModel>().SingleInstance();
             cb.RegisterType<EditRecipeViewModel>().SingleInstance();
+
+            cb.RegisterType<MainBusinessCardPageViewModel>().SingleInstance();
             cb.RegisterType<BusinessScannerViewModel>().SingleInstance();
+            cb.RegisterType<AzureBusinessScannerViewModel>().SingleInstance();
 
 
         }

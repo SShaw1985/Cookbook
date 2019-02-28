@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-              xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
-             x:Class="CookBook.Views.BusinessScanner">
+             xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             x:Class="CookBook.Views.AzureBusinessScanner">
     <ContentPage.ToolbarItems>
         <ToolbarItem  Command="{Binding ScanPhotoCommand}" Text="Scan" />
         <ToolbarItem  Command="{Binding PickPhotoCommand}" Text="Gallery" />
@@ -11,20 +11,21 @@
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Spacing="0" Padding="15">
-                <imageeditor:SfImageEditor x:Name="editor" Source="{Binding Image}" HeightRequest="400" WidthRequest="400" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
-                 <Label Text="Scan Type:" FontSize="Medium" />
-                    <Picker ItemsSource="{Binding ScanTypes}" SelectedItem="{Binding ScanType}" ItemDisplayBinding="{Binding .}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
+                <imageeditor:SfImageEditor x:Name="editor"  HeightRequest="400" WidthRequest="400" Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
+                 
                     
-                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="Business Name:" FontSize="Medium" />
                     <Entry Text="{Binding BusinessName}" />
+                    <Picker x:Name="businessname" ItemsSource="{Binding Others}"  SelectedItem="{Binding BusinessName, Mode=TwoWay}" ItemDisplayBinding="{Binding .}" />
+
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="Title:" FontSize="Medium" />
-                    <Picker ItemsSource="{Binding Others}" SelectedItem="{Binding Title}" ItemDisplayBinding="{Binding .}" />
+                    <Entry Text="{Binding Title}" />
+                    <Picker x:Name="title" ItemsSource="{Binding Others}"  SelectedItem="{Binding Title, Mode=TwoWay}" ItemDisplayBinding="{Binding .}" />
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="Email:" FontSize="Medium" />
@@ -32,7 +33,9 @@
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="Phone Number:" FontSize="Medium" />
-                    <Entry Text="{Binding PhoneNumber}" />
+                    <Entry Text="{Binding SelectedPhoneNumber}" />
+                     <Picker x:Name="phonenumbers" ItemsSource="{Binding PhoneNumber}" SelectedItem="{Binding SelectedPhoneNumber, Mode=TwoWay}" ItemDisplayBinding="{Binding .}" />
+                                    
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="Url:" FontSize="Medium" />
@@ -41,6 +44,8 @@
                     
                     <Label Text="Street Address:" FontSize="Medium" />
                     <Entry Text="{Binding StreetAddress}" />
+                    <Picker x:Name="streetaddress" ItemsSource="{Binding Others}"  SelectedItem="{Binding StreetAddress, Mode=TwoWay}" ItemDisplayBinding="{Binding .}" />
+
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     <Label Text="City:" FontSize="Medium" />
@@ -53,7 +58,9 @@
                     
                     
                     <Label Text="Zip:" FontSize="Medium" />
-                    <Entry Text="{Binding Zip}" />
+                    <Entry Text="{Binding SelectedZip}" />
+                     <Picker x:Name="zip" ItemsSource="{Binding Zip}"  SelectedItem="{Binding SelectedZip, Mode=TwoWay}" ItemDisplayBinding="{Binding .}" />
+          
                     <BoxView HeightRequest="10" BackgroundColor="White"/>
                     
                     

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="CookBook.Views.MainBusinessCardPage">
+    <ContentPage.Content>
+        
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,100,15,100">
+            
+            
+                <Button Command="{Binding GoogleCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Style="{StaticResource LoginButton}" Text="Google Vision OCR"/>
+            
+                <Button Command="{Binding TesseractCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource LoginButton}" Text="Tesseract OCR"/>
+            
+                <Button Command="{Binding AzureCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Style="{StaticResource LoginButton}" Text="Azure Cognitive Services OCR"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

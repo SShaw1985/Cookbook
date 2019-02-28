@@ -99,12 +99,31 @@ namespace CookBook.ViewModels
             if (CrossMedia.Current.IsCameraAvailable)
             {
 
+                /*Func<object> func = () =>
+                {
+                    var layout = new RelativeLayout();
+                    var image = new Image
+                    {
+                        Source = "frame"
+                    };
+
+                    Func<RelativeLayout, double> ImageHeight = (p) => image.Measure(layout.Width, layout.Height).Request.Height;
+                    Func<RelativeLayout, double> ImageWidth = (p) => image.Measure(layout.Width, layout.Height).Request.Width;
+
+                    layout.Children.Add(image,
+                                Constraint.RelativeToParent(parent => parent.Width / 2 - ImageWidth(parent) / 2),
+                                Constraint.RelativeToParent(parent => parent.Height / 2 - ImageHeight(parent) / 2)
+                    );
+                    return layout;
+                };*/
+
                 photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                 {
                     PhotoSize = PhotoSize.Large,
                     Name = Guid.NewGuid().ToString() + ".jpg",
                     RotateImage = true,
-                    AllowCropping = true
+                    AllowCropping = true,
+                    //OverlayViewProvider = func
                 });
             }
             else
@@ -112,10 +131,12 @@ namespace CookBook.ViewModels
                 photo = await CrossMedia.Current.PickPhotoAsync();
 
             }
-            strm = photo.GetStream();
-            Path = photo.Path;
-            Image = ImageSource.FromFile(Path);
-
+            if (photo != null)
+            {
+                strm = photo.GetStream();
+                Path = photo.Path;
+                Image = ImageSource.FromFile(Path);
+            }
             OnPropertyChanged("ShowResults");
         }
 
@@ -134,9 +155,12 @@ namespace CookBook.ViewModels
             photo = await CrossMedia.Current.PickPhotoAsync();
 
 
-            strm = photo.GetStream();
-            Path = photo.Path;
-            Image = ImageSource.FromFile(Path);
+            if (photo != null)
+            {
+                strm = photo.GetStream();
+                Path = photo.Path;
+                Image = ImageSource.FromFile(Path);
+            }
 
 
 
@@ -237,8 +261,16 @@ namespace CookBook.ViewModels
 
             _tesseractApi.SetPageSegmentationMode(type);
 
-            var stream = File.OpenRead(Path);
 
+            Stream stream = null;
+            if (SavedStream != null)
+            {
+                stream = SavedStream;
+            }
+            else
+            {
+                stream = File.OpenRead(Path);
+            }
             if (stream != null)
             {
                 var source = stream;
