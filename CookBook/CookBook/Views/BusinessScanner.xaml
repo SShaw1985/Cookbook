@@ -2,67 +2,92 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
               xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             xmlns:local="clr-namespace:CookBook.Controls"
              x:Class="CookBook.Views.BusinessScanner">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem  Command="{Binding ScanPhotoCommand}" Text="Scan" />
-        <ToolbarItem  Command="{Binding PickPhotoCommand}" Text="Gallery" />
-        <ToolbarItem  Command="{Binding TakePhotoCommand}" Text="Photo" />
-    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout Spacing="0" Padding="15">
-                <imageeditor:SfImageEditor x:Name="editor" Source="{Binding Image}" HeightRequest="400" WidthRequest="400" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
-                 <Label Text="Scan Type:" FontSize="Medium" />
-                    <Picker ItemsSource="{Binding ScanTypes}" SelectedItem="{Binding ScanType}" ItemDisplayBinding="{Binding .}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Business Name:" FontSize="Medium" />
-                    <Entry Text="{Binding BusinessName}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Title:" FontSize="Medium" />
-                    <Picker ItemsSource="{Binding Others}" SelectedItem="{Binding Title}" ItemDisplayBinding="{Binding .}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Email:" FontSize="Medium" />
-                    <Entry Text="{Binding Email}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Phone Number:" FontSize="Medium" />
-                    <Entry Text="{Binding PhoneNumber}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Url:" FontSize="Medium" />
-                    <Entry Text="{Binding Url}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="Street Address:" FontSize="Medium" />
-                    <Entry Text="{Binding StreetAddress}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="City:" FontSize="Medium" />
-                    <Entry Text="{Binding City}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    <Label Text="State:" FontSize="Medium" />
-                    <Entry Text="{Binding State}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    
-                    <Label Text="Zip:" FontSize="Medium" />
-                    <Entry Text="{Binding Zip}" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                    
-                    
-                    <Label Text="Raw Scanned Data:" FontSize="Medium" />
-                    <Editor Text="{Binding Raw}" FontSize="Small" HeightRequest="300" />
-                    <BoxView HeightRequest="10" BackgroundColor="White"/>
-                </StackLayout>
-                <Button Command="{Binding ScanPhotoCommand}" HorizontalOptions="FillAndExpand" Style="{StaticResource LoginButton}" Text="Scan"/>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,50,15,40">
+            
+          <Grid x:Name="PositionGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+             
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Grid.Row="0" Text="Title 1" />
+                <Entry Grid.Column="1" Grid.Row="0" />
+                
+                
+                <Label Grid.Column="0" Grid.Row="1" Text="Title 2" />
+                <Entry Grid.Column="1" Grid.Row="1" />
+                
+                
+                <Label Grid.Column="0" Grid.Row="2" Text="Title 3" />
+                <Entry Grid.Column="1" Grid.Row="2" />
+                
+                
+                <Label Grid.Column="0" Grid.Row="3" Text="Title 4" />
+                <Entry Grid.Column="1" Grid.Row="3" />
+                
+                
+                <Label Grid.Column="0" Grid.Row="4" Text="Title 5" />
+                <Entry Grid.Column="1" Grid.Row="4" />
+                
+                
+                <Label Grid.Column="0" Grid.Row="5" Text="Title 6" />
+                <Entry Grid.Column="1" Grid.Row="5" />
+            </Grid>
+            
+            <BoxView HeightRequest="50" BackgroundColor="White"/>
+            
+            <StackLayout Orientation="Horizontal" Spacing="20">
+                <ContentView>
+                    <Label Text="test 1" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
+                
+                <ContentView>
+                    <Label Text="test 2" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView>
+                    <Label Text="test 3" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView>
+                    <Label Text="test 4" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView>
+                    <Label Text="test 5" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
+                <ContentView>
+                    <Label Text="test 6" />
+                     <ContentView.GestureRecognizers>
+                          <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"  />
+                       </ContentView.GestureRecognizers>
+                </ContentView>
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

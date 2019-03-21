@@ -106,6 +106,7 @@
     <Compile Include="SQL\SQLiteHelper.cs" />
     <Compile Include="DroidSetup.cs" />
     <Compile Include="CustomCameraRenderer.cs" />
+    <Compile Include="DragableViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

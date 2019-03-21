@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,11 @@ namespace CookBook.ViewModels
 {
     public class BusinessScannerViewModel : BaseViewModel
     {
+
+        public ObservableCollection<Monkey> Items { get; set; } = new ObservableCollection<Monkey>();
+        public ObservableCollection<string> StringList { get; set; } = new ObservableCollection<string>();
+
+
         private IAppNavigation Navi { get; set; }
         private readonly ITesseractApi _tesseractApi;
 
@@ -71,6 +77,17 @@ namespace CookBook.ViewModels
                 ScanTypes.Add(iii);
             }
             ScanType = ScanTypes.FirstOrDefault();
+
+            Items.Add(new Monkey() { Name = "Pedro", Image = "monkey1.png" });
+            Items.Add(new Monkey() { Name = "Sam", Image = "monkey2.png" });
+            Items.Add(new Monkey() { Name = "Carlos", Image = "monkey3.png" });
+            Items.Add(new Monkey() { Name = "Marino", Image = "monkey4.png" });
+
+            StringList = new ObservableCollection<string>();
+            for (int i = 0; i < 20; i++)
+            {
+                StringList.Add(i.ToString());
+            }
         }
 
 
@@ -644,5 +661,11 @@ namespace CookBook.ViewModels
             }
         }
 
+    }
+
+    public class Monkey
+    {
+        public string Name { get; set; }
+        public string Image { get; set; }
     }
 }

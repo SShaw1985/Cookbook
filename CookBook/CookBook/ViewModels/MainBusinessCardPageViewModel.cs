@@ -21,7 +21,7 @@ namespace CookBook.ViewModels
 
         private void Tesseract(object obj)
         {
-            Navi.PushPage(App.BusinessScanner);
+            Navi.PushModal(App.BusinessScanner);
         }
 
         public ICommand AzureCommand { get { return new Command(Azure); } }
